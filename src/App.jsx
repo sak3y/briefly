@@ -2,14 +2,22 @@ import { useState } from "react";
 
 const App = () => {
   const [text, setText] = useState(""); // Input text
-  const [summary, setSummary] = useState(null);
+  const [summary, setSummary] = useState(""); // Summary of input
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSummary = async () => {
-    if (text.length < 1) return;
+
+
+  const handleSummarise = async () => {
+    if (text.length < 1) return; // Handle edge case
+
+    console.log("Text to summarise:", text);
+
     try {
-      setLoading(true);
-      const res = await fetch("/.netlify/functions/summarize", {
+      setLoading(true); // Visual cue on button
+
+      // Fetch local endpoint from serverless function
+      const res = await fetch("/.netlify/functions/summarise", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
@@ -17,17 +25,17 @@ const App = () => {
 
       const data = await res.json();
 
-      setSummary(data.summary);
-
+      setSummary(data.summary || "No Summary");
     } catch (err) {
-      throw Error(err);
+      setSummary("Couldn't summarise text");
+      console.error("Couldn't call function:", err);
     } finally {
       setLoading(false);
-
-      console.log(summary);
     }
   };
 
+
+  // Return back to default
   const handleReturn = () => {
     setSummary("");
   };
@@ -37,8 +45,9 @@ const App = () => {
       <div className="container">
         <h1>Summarise Text</h1>
         <div className="text-container">
+          {/* Display input or summary */}
           {summary ? (
-            <div id="output">{summary}</div>
+            <div id="output">{error ? error : summary}</div>
           ) : (
             <textarea
               autoFocus
@@ -51,7 +60,9 @@ const App = () => {
             ></textarea>
           )}
         </div>
+
         <div className="btn-container">
+          {/* Display either summarise or return button */}
           {summary ? (
             <button
               name="Return"
@@ -62,8 +73,8 @@ const App = () => {
               Return
             </button>
           ) : (
-            <button name="summarise" disabled={loading} onClick={() => handleSummary()}>
-              {loading ? "..." : "Summarise"}
+            <button name="summarise" disabled={loading} className="shimmer" onClick={() => handleSummarise()}>
+              {loading ? "Summarising..." : "Summarise"}
             </button>
           )}
         </div>
