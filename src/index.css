@@ -51,7 +51,7 @@ textarea:focus {
   overflow-y: scroll;
   max-height: 3rem;
   margin-top: 1rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 400;
   color: black;
 }
@@ -84,13 +84,6 @@ button:disabled {
 .shimmer-btn {
   position: relative;
   overflow: hidden;
-  padding: 0.6rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  background: linear-gradient(90deg, #6a5af9, #8f7dff);
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
   transition: background 0.3s ease;
 }
 
@@ -98,8 +91,8 @@ button:disabled {
   content: '';
   position: absolute;
   top: 0;
-  left: -75%;       /* start off-screen */
-  width: 50%;       /* width of the glint */
+  left: -75%;
+  width: 50%;      
   height: 100%;
   background: linear-gradient(
     120deg,
@@ -108,7 +101,7 @@ button:disabled {
     rgba(255,255,255,0) 100%
   );
   transform: skewX(-20deg); /* angle the shimmer */
-  animation: shimmer 2s infinite;
+  animation: shimmer 2s 1;
 }
 
 @keyframes shimmer {

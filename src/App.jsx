@@ -6,17 +6,13 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-
-
   const handleSummarise = async () => {
-    if (text.length < 1) return; // Handle edge case
-
-    console.log("Text to summarise:", text);
+    if (text.length < 1) return; // Handle empty strings
 
     try {
-      setLoading(true); // Visual cue on button
+      setLoading(true); // Loading effect on button
 
-      // Fetch local endpoint from serverless function
+      // Fetch api from local endpoint
       const res = await fetch("/.netlify/functions/summarise", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -25,15 +21,21 @@ const App = () => {
 
       const data = await res.json();
 
-      setSummary(data.summary || "No Summary");
+      // Check if summary exists and set it
+      if (data.summary) {
+        setSummary(data.summary);
+      } else {
+        setError("no summary");
+      }
+
+
     } catch (err) {
-      setSummary("Couldn't summarise text");
+      setError("Couldn't summarise text");
       console.error("Couldn't call function:", err);
     } finally {
       setLoading(false);
     }
   };
-
 
   // Return back to default
   const handleReturn = () => {
@@ -47,7 +49,9 @@ const App = () => {
         <div className="text-container">
           {/* Display input or summary */}
           {summary ? (
-            <div id="output">{error ? error : summary}</div>
+            <div id="output">
+              {error ? <div className="error">{error}</div> : <div>{summary}</div>}
+            </div>
           ) : (
             <textarea
               autoFocus
@@ -73,7 +77,12 @@ const App = () => {
               Return
             </button>
           ) : (
-            <button name="summarise" disabled={loading} className="shimmer" onClick={() => handleSummarise()}>
+            <button
+              name="summarise"
+              disabled={loading}
+              className="shimmer-btn"
+              onClick={() => handleSummarise()}
+            >
               {loading ? "Summarising..." : "Summarise"}
             </button>
           )}
