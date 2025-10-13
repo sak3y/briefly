@@ -1,0 +1,11 @@
+{
+  "name": "Briefly",
+  "description": "Simplify and summarise text using AI",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "author": "sak3y",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Briefly"
+  }
+}
