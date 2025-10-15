@@ -19,16 +19,16 @@ const App = () => {
         body: JSON.stringify({ text }),
       });
 
+      if (!res.ok) throw Error(res.status);
+
       const data = await res.json();
 
-      // Check if summary exists and set it
+      // Set summary
       if (data.summary) {
         setSummary(data.summary);
       } else {
         setError("no summary");
       }
-
-
     } catch (err) {
       setError("Couldn't summarise text");
       console.error("Couldn't call function:", err);
@@ -37,7 +37,7 @@ const App = () => {
     }
   };
 
-  // Return back to default
+  // Return summary to default
   const handleReturn = () => {
     setSummary("");
   };
