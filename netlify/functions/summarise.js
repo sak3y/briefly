@@ -3,7 +3,7 @@ export async function handler(event) {
     return {
       statusCode: 204,
       headers: {
-        "Access-Control-Allow-Origin": "chrome-extension:*",
+        "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type",
       },
@@ -18,7 +18,7 @@ export async function handler(event) {
       return {
         statusCode: 400,
         headers: {
-          "Access-Control-Allow-Origin": "chrome-extension:*",
+          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({ error: "Missing text" }),
       };
@@ -45,7 +45,7 @@ export async function handler(event) {
     return {
       statusCode: 200,
       headers: {
-        "Access-Control-Allow-Origin": "chrome-extension:*",
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({ summary, raw: data }),
     };
@@ -54,7 +54,7 @@ export async function handler(event) {
     return {
       statusCode: 500,
       headers: {
-        "Access-Control-Allow-Origin": "chrome-extension:*",
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({ error: err.message }),
     };
