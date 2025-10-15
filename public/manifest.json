@@ -7,5 +7,8 @@
   "action": {
     "default_popup": "index.html",
     "default_title": "Briefly"
-  }
+  },
+  "host_permissions": [
+    "https://briefly-sak3y.netlify.app/*"
+  ]
 }
