@@ -6,14 +6,15 @@ export async function handler(event) {
     const { text } = JSON.parse(event.body || "{}");
     if (!text) return { statusCode: 400, body: JSON.stringify({ error: "Missing text" }) };
 
-    // Fetch from Cohere chat endpoint
-    const response = await fetch("https://api.cohere.com/v1/chat", {
+    // Fetch from Cohere chat
+    const res = await fetch("https://api.cohere.com/v1/chat", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${apiKey}`,
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "POST",
+        "Access-Control-Allow-Origin": "chrome-extension://bdagdjobngmcoljcokelmlcflacdodel",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
       },
       body: JSON.stringify({
         message: `Summarize the following as best as possible: ${text}`, // Chat prompt to summ
@@ -22,7 +23,7 @@ export async function handler(event) {
       }),
     });
 
-    const data = await response.json();
+    const data = await res.json();
 
     // Returns Cohere 'text' response as summary
     const summary = data.text || "";

@@ -13,13 +13,17 @@ const App = () => {
       setLoading(true); // Loading effect on button
 
       // Fetch api from local endpoint
-      const res = await fetch("/.netlify/functions/summarise", {
+      const res = await fetch("https://briefly-sak3y.netlify.app/.netlify/functions/summarise", {
+        statusCode: 200,
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "chrome-extension://bdagdjobngmcoljcokelmlcflacdodel",
+        },
         body: JSON.stringify({ text }),
       });
 
-      if (!res.ok) throw Error(res.status); // Hanlde error
+      if (!res.ok) throw Error(res.status); // Handle error
 
       const data = await res.json();
 
