@@ -19,7 +19,7 @@ const App = () => {
         body: JSON.stringify({ text }),
       });
 
-      if (!res.ok) throw Error(res.status);
+      if (!res.ok) throw Error(res.status); // Hanlde error
 
       const data = await res.json();
 
@@ -31,7 +31,7 @@ const App = () => {
       }
     } catch (err) {
       setError("Couldn't summarise text");
-      console.error("Couldn't call function:", err);
+      console.error(err);
     } finally {
       setLoading(false);
     }
