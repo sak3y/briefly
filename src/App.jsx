@@ -12,13 +12,12 @@ const App = () => {
     try {
       setLoading(true); // Loading effect on button
 
-      // Fetch api from local endpoint
+      // Fetch api from serverless endpoint
       const res = await fetch("https://briefly-sak3y.netlify.app/.netlify/functions/summarise", {
         statusCode: 200,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "chrome-extension://bdagdjobngmcoljcokelmlcflacdodel",
         },
         body: JSON.stringify({ text }),
       });
