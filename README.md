@@ -14,7 +14,7 @@ A chrome-extension tool that lets you summarise long pieces of text without open
 ## Video 🎥
 
 
-https://github.com/user-attachments/assets/127396b4-dafe-4c16-a4af-e15e510a2ce6
+https://github.com/user-attachments/assets/775650e8-e7b1-483e-bf56-f52a5870198c
 
 
 Coming to the chrome store soon
