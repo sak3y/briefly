@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 export async function handler(event) {
   if (event.httpMethod === "OPTIONS") {
     return {
