@@ -11,8 +11,10 @@ A chrome-extension tool that lets you summarise long pieces of text without open
 ## Dependencies 🛠️ 
 `React.js` `Vite` `cohere-api` `serverless-function`
 
-## Video 
+## Video 🎥
 
-🎥[briefly101625.mp3](https://github.com/user-attachments/files/22939492/briefly101625.mp3)
+
+https://github.com/user-attachments/assets/127396b4-dafe-4c16-a4af-e15e510a2ce6
+
 
 Coming to the chrome store soon
