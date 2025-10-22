@@ -33,7 +33,7 @@ export async function handler(event) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        message: `Summarize the following as best as possible: ${text}`,
+        message: `Summarize the input into clear, concise bullet points. Focus on essential facts. Write for someone who wants quick takeaways. Use simple language. Avoid fluff. Input:\n\n${text}`,
         model: "command-a-03-2025",
         stream: false,
       }),
